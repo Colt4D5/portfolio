@@ -1,0 +1,71 @@
+/* font-weight: 900; */
+@font-face {
+    font-family: 'montserrat';
+    src: url('/fonts/montserratalternates-black-webfont.woff2') format('woff2'),
+         url('/fonts/montserratalternates-black-webfont.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+/* font-weight: 700; */
+@font-face {
+    font-family: 'montserrat';
+    src: url('/fonts/montserratalternates-bold-webfont.woff2') format('woff2'),
+         url('/fonts/montserratalternates-bold-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* font-weight: 700; */
+@font-face {
+    font-family: 'montserrat';
+    src: url('/fonts/montserratalternates-bolditalic-webfont.woff2') format('woff2'),
+         url('/fonts/montserratalternates-bolditalic-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* font-weight: 200; */
+@font-face {
+    font-family: 'montserrat';
+    src: url('/fonts/montserratalternates-extralight-webfont.woff2') format('woff2'),
+         url('/fonts/montserratalternates-extralight-webfont.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+
+/* font-weight: 200; */
+@font-face {
+    font-family: 'montserrat';
+    src: url('/fonts/montserratalternates-extralightitalic-webfont.woff2') format('woff2'),
+         url('/fonts/montserratalternates-extralightitalic-webfont.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+}
+
+/* font-weight: 400; */
+@font-face {
+    font-family: 'montserrat';
+    src: url('/fonts/montserratalternates-italic-webfont.woff2') format('woff2'),
+         url('/fonts/montserratalternates-italic-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* font-weight: 400; */
+@font-face {
+    font-family: 'montserrat';
+    src: url('/fonts/montserratalternates-regular-webfont.woff2') format('woff2'),
+         url('/fonts/montserratalternates-regular-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pixelify Sans';
+    src: url('/fonts/PixelifySans-Regular.woff2') format('woff2'),
+        url('/fonts/PixelifySans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

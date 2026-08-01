@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import { PUBLIC_FIRST_NAME, PUBLIC_LAST_NAME } from '$env/static/public';
 	import favicon from '$lib/assets/favicon.svg';
 	import '$lib/assets/css/reset.css';
@@ -9,6 +10,8 @@
 	import ForegroundCanvas from '$lib/components/ForegroundCanvas.svelte';
 	import AnchorHoverParticles from '$lib/components/AnchorHoverParticles.svelte';
 	import { onMount } from 'svelte';
+	
+	injectSpeedInsights();
 
 	let { children } = $props();
 

@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+	import { dev } from '$app/environment';
+	import { injectAnalytics } from '@vercel/analytics/sveltekit';
 	import { PUBLIC_FIRST_NAME, PUBLIC_LAST_NAME } from '$env/static/public';
 	import favicon from '$lib/assets/favicon.svg';
 	import '$lib/assets/css/reset.css';
@@ -12,6 +14,8 @@
 	import { onMount } from 'svelte';
 	
 	injectSpeedInsights();
+
+	injectAnalytics({ mode: dev ? 'development' : 'production' });
 
 	let { children } = $props();
 

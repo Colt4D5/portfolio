@@ -1,19 +1,41 @@
 <script>
+	import { PUBLIC_FIRST_NAME, PUBLIC_LAST_NAME } from "$env/static/public";
 	import Button from "./Button.svelte";
+	import CityscapeCanvas from "./CityscapeCanvas.svelte";
 
   const subtitle = 'full stack software engineer';
+
+  const MIN_TITLE_SIZE_REM = 4;
+  const MAX_TITLE_SIZE_REM = 14;
+  const REFERENCE_SIZE_REM = 12;
+  const REFERENCE_WIDTH = 1200;
+  const REFERENCE_HEIGHT = 800;
+
+  let innerWidth = $state(0);
+  let innerHeight = $state(0);
+
+  let titleSizeRem = $derived.by(() => {
+    if (!innerWidth || !innerHeight) return REFERENCE_SIZE_REM;
+    const widthRatio = innerWidth / REFERENCE_WIDTH;
+    const heightRatio = innerHeight / REFERENCE_HEIGHT;
+    const scaled = REFERENCE_SIZE_REM * Math.min(widthRatio, heightRatio);
+    return Math.max(MIN_TITLE_SIZE_REM, Math.min(MAX_TITLE_SIZE_REM, scaled));
+  });
 </script>
 
-<section id="hero">
-  <h1 id="hero-title">colton<br>allen</h1>
+<svelte:window bind:innerWidth bind:innerHeight />
+
+<section id="hero" style="--title-size: {titleSizeRem}rem">
+  <h1 id="hero-title">{PUBLIC_FIRST_NAME}<br>{PUBLIC_LAST_NAME}</h1>
   <div id="hero-subtitle">
     {#each subtitle as char, i (i)}
       <span style="--letter-index: {i}">{char === ' ' ? '\u00A0' : char}</span>
     {/each}
   </div>
   <div class="button-wrapper">
-    <Button href="#about" delay={500}>View My Work</Button>
+    <Button href="#about" delay={500}>Learn about me</Button>
   </div>
+  <CityscapeCanvas />
 </section>
 
 <style>
@@ -24,8 +46,6 @@
   }
 
   #hero {
-    --title-shadow-color: #6F1BC8;
-    --title-shadow-color-dark: hsl(from var(--title-shadow-color) h s calc(l - 25) / 1);
     margin: 0;
     background-image: url('/images/hero-bg.jpg');
     /* background-image: linear-gradient(to bottom, hsl(263, 100%, 53%), hsl(327, 74%, 62%) 50%, hsl(32, 100%, 64%), hsl(56, 100%, 76%), hsl(56, 60%, 86%), hsl(56, 60%, 86%) 100%); */
@@ -35,9 +55,10 @@
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
+    padding-top: 15vh;
     gap: 1.5rem;
     &::after {
       content: '';
@@ -49,10 +70,8 @@
       background: linear-gradient(to bottom, rgb(255 255 255 / 0), rgb(255 255 255 / 1));
     }
     h1 {
-      --title-translate-y: 12rem;
-      --shadow-spacing: 1rem;
       font-family: 'Pixelify Sans', sans-serif;
-      font-size: 12rem;
+      font-size: var(--title-size, 12rem);
       line-height: 0.75;
       color: #FFEFFF;
       position: relative;
@@ -79,6 +98,26 @@
         animation: letter-in 0.3s ease-out forwards;
         animation-delay: calc(1.7s + var(--letter-index) * 0.05s);
       }
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        url('/images/mountains-01.png'),
+        url('/images/mountains-02.png');
+      background-position:
+        0% calc(100% - 3rem),
+        100% calc(100% - 3rem);
+      background-repeat: no-repeat;
+      background-size:
+        45%,
+        45%;
+      pointer-events: none;
+      z-index: 1;
     }
   }
 

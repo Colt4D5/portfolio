@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { particles } from '$lib/stores/paricles.svelte';
+	import { particles } from '$lib/stores/particles.svelte';
 	import { clouds } from '$lib/stores/clouds.svelte';
 
 	let canvas: HTMLCanvasElement;
@@ -12,6 +12,7 @@
 
 	let lastSpawnTime = 0;
 	let nextSpawnInterval = getRandomSpawnInterval();
+  const maxClouds = 25;
 
 	function getRandomSpawnInterval() {
 		return Math.random() * 3000 + 2000; // 2-5 seconds
@@ -40,8 +41,8 @@
 	onMount(() => {
 		cloud = new Image();
 		cloudPair = new Image();
-		cloud.src = '/images/cloud.png';
-		cloudPair.src = '/images/cloud_pair.png';
+		cloud.src = '/images/sunset-cloud.webp';
+		cloudPair.src = '/images/sunset-clouds.webp';
 		cloud.onload = () => imagesLoaded++;
 		cloudPair.onload = () => imagesLoaded++;
 
@@ -70,7 +71,7 @@
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 			// Spawn new clouds at random intervals
-			if (timestamp - lastSpawnTime > nextSpawnInterval) {
+			if (timestamp - lastSpawnTime > nextSpawnInterval && clouds.length < maxClouds) {
 				spawnCloud();
 				lastSpawnTime = timestamp;
 				nextSpawnInterval = getRandomSpawnInterval();

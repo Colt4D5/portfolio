@@ -4,9 +4,10 @@
     children: any;
     href?: string;
     delay?: number;
+    variant?: 'default' | 'alt';
   }
-  const { children, href, delay = 1000 }: Props = $props();
-  import { particles } from '$lib/stores/paricles.svelte';
+  const { children, href, delay = 1000, variant = 'default' }: Props = $props();
+  import { particles } from '$lib/stores/particles.svelte';
 
   let button = $state<HTMLButtonElement>();
   let isExploding = $state(false);
@@ -17,7 +18,11 @@
     explode();
     if (href) {
       setTimeout(() => {
-        goto(href);
+        if (href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('http')) {
+          window.location.href = href;
+        } else {
+          goto(href);
+        }
         isExploding = false;
       }, delay);
     }
@@ -31,7 +36,7 @@
         x: Math.random() * btnBox.width + btnBox.left + window.scrollX,
         y: Math.random() * btnBox.height + btnBox.top + window.scrollY,
         size: Math.random() * 10 + 5,
-        color: '#f57e24',
+        color: variant === 'alt' ? '#fff' : '#f57e24',
         velocityX: Math.random() * 6 - 3,
         velocityY: Math.random() * -6 - 3,
         gravity: 0.25,
@@ -41,9 +46,9 @@
 </script>
 
 {#if href}
-  <button class="button" class:exploding={isExploding} {onclick} bind:this={button}>{@render children()}</button>
+  <button class="button" class:exploding={isExploding} class:alternate={variant === 'alt'} {onclick} bind:this={button}>{@render children()}</button>
 {:else}
-  <button class="button" class:exploding={isExploding} bind:this={button}>{@render children()}</button>
+  <button class="button" class:exploding={isExploding} class:alternate={variant === 'alt'} bind:this={button}>{@render children()}</button>
 {/if}
 
 <style>
@@ -58,7 +63,11 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     text-decoration: none;
+    text-transform: lowercase;
     position: relative;
+    &.alternate {
+      --button-color: #fff;
+    }
     &.exploding::after {
       box-shadow:
         var(--border-width) calc(var(--border-width) * -1) 0 0 hsl(from var(--button-color) h s calc(l + 20) / 1),

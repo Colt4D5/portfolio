@@ -85,3 +85,13 @@ export const experienceData: Experience[] = [
 		]
 	}
 ];
+
+/**
+ * Ensures the portfolio URL has a protocol so it can be used with the URL constructor.
+ * Falls back to https:// if no protocol is present.
+ */
+export function getPortfolioUrl(url: string): string {
+	if (!url) return 'https://example.com';
+	if (/^https?:\/\//i.test(url)) return url;
+	return `https://${url}`;
+}

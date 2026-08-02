@@ -2,7 +2,8 @@
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import { dev } from '$app/environment';
 	import { injectAnalytics } from '@vercel/analytics/sveltekit';
-	import { PUBLIC_FIRST_NAME, PUBLIC_LAST_NAME } from '$env/static/public';
+	import { page } from '$app/stores';
+	import { PUBLIC_FIRST_NAME, PUBLIC_LAST_NAME, PUBLIC_PORTFOLIO_URL } from '$env/static/public';
 	import '$lib/assets/css/reset.css';
 	import '$lib/assets/css/fonts.css';
 	import '$lib/assets/css/app.css';
@@ -10,6 +11,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import ForegroundCanvas from '$lib/components/ForegroundCanvas.svelte';
 	import AnchorHoverParticles from '$lib/components/AnchorHoverParticles.svelte';
+	import { getPortfolioUrl } from '$lib/utils/utils';
 	import { onMount } from 'svelte';
 
 	injectSpeedInsights();
@@ -27,6 +29,13 @@
 		lastScrollY = scrollY;
 		scrollY = window.scrollY;
 	}
+
+	const fullName = `${PUBLIC_FIRST_NAME} ${PUBLIC_LAST_NAME}`;
+	const pageTitle = `${fullName} | Full-Stack Software Engineer`;
+	const pageDescription = `Portfolio of ${fullName}, a full-stack software engineer building scalable web applications, polished user interfaces, and developer tooling.`;
+	const portfolioUrl = getPortfolioUrl(PUBLIC_PORTFOLIO_URL);
+	const canonicalUrl = $derived(new URL($page.url.pathname, portfolioUrl).href);
+	const ogImageUrl = $derived(new URL('/images/about-image.webp', portfolioUrl).href);
 
 	onMount(() => {
 		const sections = Array.from(document.querySelectorAll('section:has(.section-container)'));
@@ -73,7 +82,27 @@
 </script>
 
 <svelte:head>
-	<title>{PUBLIC_FIRST_NAME} {PUBLIC_LAST_NAME} | Full-Stack Software Engineer</title>
+	<title>{pageTitle}</title>
+	<meta name="description" content={pageDescription} />
+	<meta name="robots" content="index, follow" />
+	<link rel="canonical" href={canonicalUrl} />
+
+	<!-- Open Graph -->
+	<meta property="og:title" content={pageTitle} />
+	<meta property="og:description" content={pageDescription} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={canonicalUrl} />
+	<meta property="og:image" content={ogImageUrl} />
+	<meta property="og:site_name" content={fullName} />
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={pageTitle} />
+	<meta name="twitter:description" content={pageDescription} />
+	<meta name="twitter:image" content={ogImageUrl} />
+
+	<!-- Theme color for mobile browsers -->
+	<meta name="theme-color" content="#6a1b9a" />
 </svelte:head>
 
 <a href="#content" class="skip-link">skip to main content</a>

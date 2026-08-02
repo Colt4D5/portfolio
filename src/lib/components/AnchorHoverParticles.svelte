@@ -6,12 +6,15 @@
 	let animationFrameId = $state<number | null>(null);
 	let frameCount = 0;
 	let nextSpawnFrame = getRandomSpawnFrame();
+	let reducedMotion = $state(false);
 
 	function getRandomSpawnFrame(): number {
 		return Math.floor(Math.random() * 10) + 5; // 5 to 15 frames
 	}
 
 	function handleMouseOver(event: MouseEvent) {
+		if (reducedMotion) return;
+
 		const target = event.target as HTMLElement | null;
 		if (!target) return;
 
@@ -31,6 +34,11 @@
 	}
 
 	function loop() {
+		if (reducedMotion) {
+			animationFrameId = requestAnimationFrame(loop);
+			return;
+		}
+
 		if (hoveredAnchor?.isConnected) {
 			if (frameCount >= nextSpawnFrame) {
 				spawnAnchorHoverParticle(hoveredAnchor);
@@ -48,11 +56,20 @@
 	}
 
 	onMount(() => {
+		const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+		reducedMotion = mediaQuery.matches;
+
+		const onChange = (event: MediaQueryListEvent) => {
+			reducedMotion = event.matches;
+		};
+
+		mediaQuery.addEventListener('change', onChange);
 		document.addEventListener('mouseover', handleMouseOver);
 		document.addEventListener('mouseout', handleMouseOut);
 		animationFrameId = requestAnimationFrame(loop);
 
 		return () => {
+			mediaQuery.removeEventListener('change', onChange);
 			document.removeEventListener('mouseover', handleMouseOver);
 			document.removeEventListener('mouseout', handleMouseOut);
 			if (animationFrameId !== null) {

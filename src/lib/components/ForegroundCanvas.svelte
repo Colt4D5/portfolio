@@ -9,10 +9,11 @@
 	let cloud: HTMLImageElement;
 	let cloudPair: HTMLImageElement;
 	let imagesLoaded = $state(0);
+	let reducedMotion = $state(false);
 
 	let lastSpawnTime = 0;
 	let nextSpawnInterval = getRandomSpawnInterval();
-  const maxClouds = 25;
+	const maxClouds = 25;
 
 	function getRandomSpawnInterval() {
 		return Math.random() * 3000 + 2000; // 2-5 seconds
@@ -39,6 +40,15 @@
 	}
 
 	onMount(() => {
+		const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+		reducedMotion = mediaQuery.matches;
+
+		const onChange = (event: MediaQueryListEvent) => {
+			reducedMotion = event.matches;
+		};
+
+		mediaQuery.addEventListener('change', onChange);
+
 		cloud = new Image();
 		cloudPair = new Image();
 		cloud.src = '/images/sunset-cloud.webp';
@@ -56,6 +66,10 @@
 				animate();
 			}
 		}
+
+		return () => {
+			mediaQuery.removeEventListener('change', onChange);
+		};
 	});
 
 	function onresize() {
@@ -67,6 +81,12 @@
 
 	function animate(timestamp = 0) {
 		if (ctx && canvas) {
+			if (reducedMotion) {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				requestAnimationFrame(animate);
+				return;
+			}
+
 			// Clear the canvas
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -127,7 +147,7 @@
 	}
 </script>
 
-<canvas id="foreground-canvas" bind:this={canvas}></canvas>
+<canvas id="foreground-canvas" bind:this={canvas} aria-hidden="true"></canvas>
 <svelte:window {onresize} />
 
 <style>

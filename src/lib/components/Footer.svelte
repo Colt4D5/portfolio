@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { PUBLIC_EMAIL, PUBLIC_LINKEDIN_URL, PUBLIC_FIRST_NAME, PUBLIC_LAST_NAME, PUBLIC_PORTFOLIO_URL } from '$env/static/public';
+	import {
+		PUBLIC_EMAIL,
+		PUBLIC_LINKEDIN_URL,
+		PUBLIC_FIRST_NAME,
+		PUBLIC_LAST_NAME,
+		PUBLIC_PORTFOLIO_URL
+	} from '$env/static/public';
 	import { Mail, Globe } from '@lucide/svelte';
 	import Linkedin from '$lib/assets/svg/linkedin.svelte';
 
@@ -11,17 +17,31 @@
 		<div class="footer-name">
 			<h2>{PUBLIC_FIRST_NAME} {PUBLIC_LAST_NAME}</h2>
 		</div>
-		<div class="footer-copy">@ {currentYear} {PUBLIC_FIRST_NAME} {PUBLIC_LAST_NAME} | all rights reserved</div>
+		<div class="footer-copy">
+			@ {currentYear}
+			{PUBLIC_FIRST_NAME}
+			{PUBLIC_LAST_NAME} | all rights reserved
+		</div>
 		<div class="footer-links">
-			<a href="mailto:{PUBLIC_EMAIL}" aria-label="Email">
+			<a href="mailto:{PUBLIC_EMAIL}" rel="external" aria-label="Email">
 				<Mail size={30} />
 			</a>
-			<a href={PUBLIC_LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+			<a
+				href={PUBLIC_LINKEDIN_URL}
+				target="_blank"
+				rel="noopener noreferrer external"
+				aria-label="LinkedIn"
+			>
 				<Linkedin size={32} />
 			</a>
-      <a href="{PUBLIC_PORTFOLIO_URL}" target="_blank" rel="noopener noreferrer" aria-label="Portfolio">
-        <Globe size={28} />
-      </a>
+			<a
+				href={PUBLIC_PORTFOLIO_URL}
+				target="_blank"
+				rel="noopener noreferrer external"
+				aria-label="Portfolio"
+			>
+				<Globe size={28} />
+			</a>
 		</div>
 	</div>
 </footer>

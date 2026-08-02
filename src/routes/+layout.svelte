@@ -12,7 +12,7 @@
 	import ForegroundCanvas from '$lib/components/ForegroundCanvas.svelte';
 	import AnchorHoverParticles from '$lib/components/AnchorHoverParticles.svelte';
 	import { onMount } from 'svelte';
-	
+
 	injectSpeedInsights();
 
 	injectAnalytics({ mode: dev ? 'development' : 'production' });
@@ -78,6 +78,8 @@
 	<title>{PUBLIC_FIRST_NAME} {PUBLIC_LAST_NAME} | Full-Stack Software Engineer</title>
 </svelte:head>
 
+<a href="#content" class="skip-link">skip to main content</a>
+
 <Header {flgIsHidden} />
 
 <main id="content">
@@ -91,3 +93,25 @@
 <AnchorHoverParticles />
 
 <svelte:window {onscroll} />
+
+<style>
+	.skip-link {
+		position: absolute;
+		top: -100%;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 10000;
+		padding: 0.75rem 1.25rem;
+		background: var(--background);
+		color: var(--text);
+		border: 2px solid var(--accent);
+		border-radius: 0.5rem;
+		font-weight: 700;
+		text-decoration: none;
+		transition: top 0.2s ease;
+	}
+
+	.skip-link:focus {
+		top: 1rem;
+	}
+</style>

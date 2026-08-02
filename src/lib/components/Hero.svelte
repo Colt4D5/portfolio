@@ -4,28 +4,9 @@
 	import CityscapeCanvas from "./CityscapeCanvas.svelte";
 
   const subtitle = 'full stack software engineer';
-
-  const MIN_TITLE_SIZE_REM = 4;
-  const MAX_TITLE_SIZE_REM = 14;
-  const REFERENCE_SIZE_REM = 12;
-  const REFERENCE_WIDTH = 1200;
-  const REFERENCE_HEIGHT = 800;
-
-  let innerWidth = $state(0);
-  let innerHeight = $state(0);
-
-  let titleSizeRem = $derived.by(() => {
-    if (!innerWidth || !innerHeight) return REFERENCE_SIZE_REM;
-    const widthRatio = innerWidth / REFERENCE_WIDTH;
-    const heightRatio = innerHeight / REFERENCE_HEIGHT;
-    const scaled = REFERENCE_SIZE_REM * Math.min(widthRatio, heightRatio);
-    return Math.max(MIN_TITLE_SIZE_REM, Math.min(MAX_TITLE_SIZE_REM, scaled));
-  });
 </script>
 
-<svelte:window bind:innerWidth bind:innerHeight />
-
-<section id="hero" style="--title-size: {titleSizeRem}rem">
+<section id="hero">
   <h1 id="hero-title">{PUBLIC_FIRST_NAME}<br>{PUBLIC_LAST_NAME}</h1>
   <div id="hero-subtitle">
     {#each subtitle as char, i (i)}
@@ -33,7 +14,7 @@
     {/each}
   </div>
   <div class="button-wrapper">
-    <Button href="#about" delay={500}>Learn about me</Button>
+    <Button href="#about" delay={500} variant="alt">Learn about me</Button>
   </div>
   <CityscapeCanvas />
 </section>
@@ -58,8 +39,11 @@
     justify-content: flex-start;
     align-items: center;
     text-align: center;
-    padding-top: 15vh;
+    padding-top: 25vh;
     gap: 1.5rem;
+    @media (min-width: 768px) {
+      padding-top: 15vh;
+    }
     &::after {
       content: '';
       position: absolute;
@@ -71,7 +55,7 @@
     }
     h1 {
       font-family: 'Pixelify Sans', sans-serif;
-      font-size: var(--title-size, 12rem);
+      font-size: clamp(4rem, 24vmin, 14rem);
       line-height: 0.75;
       color: #FFEFFF;
       position: relative;
@@ -83,14 +67,17 @@
         calc(var(--shadow-spacing) * 0) calc(var(--shadow-spacing) * 0) 0 var(--title-shadow-color),
         calc(var(--shadow-spacing) * 0) calc(var(--shadow-spacing) * 0) 0 var(--title-shadow-color-dark);
       animation:
-        slide-in 0.5s cubic-bezier(.28,1.96,.69,2.04) 0.5s forwards,
-        animate-shadow 0.2s cubic-bezier(.28,1.96,.69,2.04) 1.25s forwards;
+        slide-in 0.5s var(--bounce-curve) 0.5s forwards,
+        animate-shadow 0.2s var(--bounce-curve) 1.25s forwards;
     }
     #hero-subtitle {
       font-family: 'Pixelify Sans', sans-serif;
-      font-size: 2rem;
-      color: #f57e24;
+      font-size: clamp(1.15rem, 4vw, 2rem);
+      color: #fff;
       margin-top: 1rem;
+      @media (min-width: 768px) {
+        color: #f57e24;
+      }
       span {
         display: inline-block;
         opacity: 0;
@@ -110,14 +97,25 @@
         url('/images/mountains-01.png'),
         url('/images/mountains-02.png');
       background-position:
-        0% calc(100% - 3rem),
-        100% calc(100% - 3rem);
+        -215% calc(100% - 2.15rem),
+        155% calc(100% - 2.25rem);
       background-repeat: no-repeat;
       background-size:
-        45%,
-        45%;
+        80%,
+        60%;
       pointer-events: none;
       z-index: 1;
+      @media (min-width: 768px) {
+        background-position:
+          0% calc(100% - 3.25rem),
+          100% calc(100% - 3.5rem);
+        background-size:
+          45%,
+          45%;
+      }
+    }
+    @media (max-width: 767px) and (orientation: portrait) {
+      min-height: max(750px, 85dvh);
     }
   }
 

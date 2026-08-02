@@ -24,6 +24,18 @@
   let rowNoise: number[] = [];
   let animationStartTime: number | null = null;
 
+  function getOceanHeight(): number {
+    const wrapper = document.getElementById('canvas-wrapper');
+    if (!wrapper) return 40;
+    const value = getComputedStyle(wrapper).getPropertyValue('--ocean-height').trim();
+    return parseInt(value, 10) || 40;
+  }
+
+  function getOceanTop(): number {
+    if (!canvas) return 0;
+    return Math.max(0, canvas.height - getOceanHeight());
+  }
+
   function lerp(a: number, b: number, t: number): number {
     return a + (b - a) * t;
   }
@@ -73,7 +85,7 @@
     if (!canvas || !ctx) return;
 
     const phase = timestamp * waveSpeed;
-    const oceanTop = Math.floor(canvas.height * 0.7);
+    const oceanTop = getOceanTop();
     const oceanHeight = canvas.height - oceanTop;
     const centerX = canvas.width / 2;
     const maxDistance = centerX;
@@ -146,7 +158,7 @@
 
   function generateRowNoise() {
     if (!canvas) return;
-    const oceanTop = Math.floor(canvas.height * 0.7);
+    const oceanTop = getOceanTop();
     const rowCount = Math.ceil((canvas.height - oceanTop) / pixelSize);
     rowNoise = Array.from({ length: rowCount }, (_, i) => {
       const t = i / Math.max(1, rowCount - 1);
@@ -167,7 +179,7 @@
   function drawBlueBase() {
     if (!canvas || !ctx) return;
 
-    const oceanTop = Math.floor(canvas.height * 0.7);
+    const oceanTop = getOceanTop();
     ctx.fillStyle = `rgb(${oceanBlue[0]}, ${oceanBlue[1]}, ${oceanBlue[2]})`;
     ctx.fillRect(0, oceanTop, canvas.width, canvas.height - oceanTop);
   }
@@ -197,6 +209,7 @@
 
 <style>
   #canvas-wrapper {
+    --ocean-height: 40px;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -204,23 +217,30 @@
     height: 8rem;
     pointer-events: none;
     z-index: 2;
+    overflow: hidden;
     @media (min-width: 768px) {
+      --ocean-height: 72px;
       height: 14rem;
     }
     canvas {
       width: 100%;
       height: 100%;
-      background: linear-gradient(to bottom, rgb(12 16 54 / 0) 70%, rgb(12 16 54 / 1) 71%, rgb(12 16 54 / 1) 100%);
+      background: linear-gradient(
+        to bottom,
+        rgb(12 16 54 / 0) calc(100% - var(--ocean-height) + 1px),
+        rgb(12 16 54 / 1) calc(100% - var(--ocean-height) + 2px),
+        rgb(12 16 54 / 1) 100%
+      );
       /* background: radial-gradient(circle at top, rgb(12 16 54 / 0) 70%, rgb(12 16 54 / 1) 71%, rgb(12 16 54 / 1) 100%); */
       z-index: 2;
     }
     &::before {
-      --sun-size: 6rem;
+      --sun-size: 5rem;
       content: '';
       position: absolute;
       top: 65%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, 50%);
       width: var(--sun-size);
       height: var(--sun-size);
       border-radius: 50%;
@@ -231,8 +251,23 @@
         rgb(241 115 54 / 1) 75%,
         rgb(163 36 91 / 1) 100%
       );
-      box-shadow: 0 0 2rem 1rem rgb(255 223 0 / 0.5), 0 0 4rem 2rem rgb(255 160 60 / 0.3);
-      z-index: -1;
+      box-shadow: 0 0 1rem 1rem rgb(255 223 0 / 0.5), 0 0 2rem 1rem rgb(255 160 60 / 0.3);
+      animation: sun-rise 0.5s var(--bounce-curve-sml) 1.75s forwards;
+      @media (min-width: 768px) {
+        --sun-size: 7rem;
+      }
+      z-index: -2;
+    }
+  }
+
+  @keyframes sun-rise {
+    0% {
+      transform: translate(-50%, 50%);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(-50%, -50%);
+      opacity: 1;
     }
   }
 </style>

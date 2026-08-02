@@ -20,23 +20,31 @@
 
 <style>
   #about {
-    #about-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-    #about-right {
-      #image-container {
-        border: 1px solid hsl(from var(--primary) h s l / 0.2);
-        border-radius: 1rem;
-        img {
-          width: 100%;
-          max-height: 100%;
-          object-fit: cover;
-          object-position: center;
+    .section-container {
+      @media (max-width: 767px) {
+        padding: 0rem 1rem;
+      }
+      #about-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      #about-right {
+        @media (max-width: 767px) {
+          order: -1;
+        }
+        #image-container {
+          border: 1px solid hsl(from var(--primary) h s l / 0.2);
           border-radius: 1rem;
+          img {
+            width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 1rem;
+          }
         }
       }
     }

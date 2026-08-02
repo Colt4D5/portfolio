@@ -20,9 +20,13 @@
     .section-container {
       background-image: url('/images/contact-bg.webp');
       background-size: cover;
-      background-position: 50% 70%;
+      background-position: 80% 70%;
       background-repeat: no-repeat;
-      padding: 6rem 2rem;
+      padding: 4rem 2rem;
+      @media (min-width: 768px) {
+        padding: 6rem 2rem;
+        background-position: 50% 70%;
+      }
       .section-content {
         text-align: left;
         display: flex;
@@ -34,6 +38,7 @@
         margin-inline: auto;
         h2 {
           font-size: 1.75rem;
+          line-height: 1.1;
         }
         p {
           font-size: 1rem;

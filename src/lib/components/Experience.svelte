@@ -63,6 +63,10 @@
   #experience {
     padding-block: 0;
     .section-container {
+      @media (max-width: 767px) {
+        padding: 3rem 1rem;
+      }
+      /* h2.section-title {} */
       #exp-grid {
         display: flex;
         flex-direction: column;
@@ -70,9 +74,17 @@
         .exp-item {
           display: grid;
           grid-template-columns: 1fr auto 3fr;
-          grid-template-rows: auto;
-          gap: 2rem;
-
+          grid-template-rows: 1fr;
+          grid-template-areas:
+            "year timeline details";
+          gap: 1rem 2rem;
+          @media (max-width: 767px) {
+            grid-template-columns: auto 1fr;
+            grid-template-areas:
+            "timeline year"
+            "timeline details";
+            gap: 1rem 1rem;
+          }
           &.in-view {
             .exp-year h3 {
               color: var(--secondary);
@@ -86,23 +98,38 @@
             }
           }
           .exp-year {
-            text-align: center;
-            transform: color 0.3s ease;
+            grid-area: year;
+            text-align: left;
+            transition: color 0.3s ease;
+            @media (min-width: 768px) {
+              text-align: center;
+            }
           }
           .exp-timeline {
+            grid-area: timeline;
             position: relative;
+            transform: translateY(0.5rem);
+            @media (max-width: 767px) {
+              order: -1;
+            }
             &::before {
               content: '';
               display: block;
-              width: 1rem;
+              width: 0.75rem;
               aspect-ratio: 1;
               background-color: var(--secondary);
               box-shadow: 
-                0 0 0 0.6rem var(--background),
-                0 0 0 0.75rem var(--text);
+                0 0 0 0.3rem var(--background),
+                0 0 0 0.5rem var(--text);
               border-radius: 50%;
               position: relative;
               z-index: 2;
+              @media (min-width: 768px) {
+                width: 1rem;
+                box-shadow: 
+                  0 0 0 0.6rem var(--background),
+                  0 0 0 0.75rem var(--text);
+              }
             }
             &::after {
               content: '';
@@ -118,10 +145,21 @@
             }
           }
           .exp-details {
+            grid-area: details;
             h3 {
               font-size: 1.25em;
               transition: all 0.3s ease;
               transform-origin: left center;
+              line-height: 1.2;
+            }
+            h4 {
+              margin-bottom: 0.5rem;
+            }
+            ul {
+              @media (max-width: 767px) {
+                list-style-type: disc;
+                padding-left: 1rem;
+              }
             }
           }
         }
@@ -132,18 +170,18 @@
   @keyframes pulse {
     0% {
       box-shadow: 
-        0 0 0 0.6rem var(--background),
-        0 0 0 0.75rem var(--text);
+        0 0 0 clamp(0.3rem, 3vw, 0.6rem) var(--background),
+        0 0 0 clamp(0.5rem, 3vw, 0.75rem) var(--text);
     }
     50% {
       box-shadow: 
-        0 0 0 1rem var(--background),
-        0 0 0 1.25rem var(--text);
+        0 0 0 clamp(0.6rem, 3vw, 1rem) var(--background),
+        0 0 0 clamp(0.8rem, 3vw, 1.25rem) var(--text);
     }
     100% {
       box-shadow: 
-        0 0 0 0.6rem var(--background),
-        0 0 0 0.75rem var(--text);
+        0 0 0 clamp(0.3rem, 3vw, 0.6rem) var(--background),
+        0 0 0 clamp(0.5rem, 3vw, 0.75rem) var(--text);
     }
   }
 </style>

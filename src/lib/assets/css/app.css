@@ -11,6 +11,8 @@
   --title-shadow-color-dark: hsl(from var(--title-shadow-color) h s calc(l - 25) / 1);
   --title-translate-y: 12rem;
   --shadow-spacing: 1rem;
+  --bounce-curve: cubic-bezier(.28,1.96,.69,2.04);
+  --bounce-curve-sml: cubic-bezier(.34, 1.4, .64, 1.1);
 }
 
 html {
@@ -79,6 +81,7 @@ section {
     font-family: 'Pixelify Sans', sans-serif;
   }
   &.boxed-in {
+    padding-inline: 1rem;
       .section-container {
         padding: 3rem 2rem;
         border: 1px solid hsl(from var(--primary) h s l / 0.25);
@@ -87,10 +90,14 @@ section {
         h2.section-title {
           position: absolute;
           top: 0rem;
-          left: 10dvw;
-          transform: translateY(calc(-50% - 0.25rem));
+          left: 50%;
+          transform: translate3d(-50%, calc(-50% - 0.25rem), 0);
           background-color: var(--background);
           padding: 0 2rem;
+          @media (min-width: 768px) {
+            left: 0;
+            transform: translate3d(10dvw, calc(-50% - 0.25rem), 0);
+          }
         }
       }
   }

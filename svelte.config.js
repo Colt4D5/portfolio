@@ -10,7 +10,8 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		prerender: {
-			entries: ['/', '/sitemap.xml', '/robots.txt', '/site.webmanifest']
+			entries: ['/', '/sitemap.xml', '/robots.txt', '/site.webmanifest'],
+			handleUnseenRoutes: 'warn'
 		}
 	}
 };

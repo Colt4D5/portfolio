@@ -8,7 +8,10 @@
 		<div class="section-content">
 			<h2>Let's build something awesome together!</h2>
 			<p>I'm always open to new opportunities and interesting projects.</p>
-			<Button href="mailto:{PUBLIC_EMAIL}" variant="alt">get in touch</Button>
+			<div class="button-group">
+				<Button href="mailto:{PUBLIC_EMAIL}" variant="alt">get in touch</Button>
+				<Button href="/resume.pdf" variant="alt" download>download resume</Button>
+			</div>
 		</div>
 	</div>
 </section>
@@ -44,6 +47,11 @@
 				}
 				p {
 					font-size: 1rem;
+				}
+				.button-group {
+					display: flex;
+					flex-wrap: wrap;
+					gap: 1rem;
 				}
 			}
 		}

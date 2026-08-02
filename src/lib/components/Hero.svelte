@@ -15,7 +15,8 @@
 	</div>
 	<span class="visually-hidden">{subtitle}</span>
 	<div class="button-wrapper">
-		<Button href="#about" delay={500} variant="alt">Learn about me</Button>
+		<Button href="#about" delay={500} variant="hero">Learn about me</Button>
+		<Button href="/resume.pdf" delay={500} variant="hero" download>download resume</Button>
 	</div>
 	<CityscapeCanvas />
 </section>
@@ -169,6 +170,10 @@
 		opacity: 0;
 		translate: 0 1rem;
 		animation: fade-up 0.5s ease-out 3s forwards;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1rem;
 	}
 
 	@keyframes fade-up {

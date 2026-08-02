@@ -6,10 +6,11 @@
 		children: Snippet;
 		href?: string;
 		delay?: number;
-		variant?: 'default' | 'alt';
+		variant?: 'default' | 'alt' | 'hero';
+		download?: string | boolean;
 	}
 
-	const { children, href, delay = 1000, variant = 'default' }: Props = $props();
+	const { children, href, delay = 1000, variant = 'default', download = false }: Props = $props();
 
 	let button = $state<HTMLButtonElement | HTMLAnchorElement>();
 	let isExploding = $state(false);
@@ -36,7 +37,10 @@
 		// Yield so the browser can paint the loading/exploding state before
 		// navigation blocks the main thread.
 		const navigate = () => {
-			if (href) {
+			if (!href) return;
+			if (download) {
+				window.open(href, '_blank');
+			} else {
 				window.location.href = href;
 			}
 			isExploding = false;
@@ -74,7 +78,9 @@
 		class="button"
 		class:exploding={isExploding}
 		class:alternate={variant === 'alt'}
+		class:hero={variant === 'hero'}
 		rel={isExternal ? 'external' : undefined}
+		target={download ? '_blank' : undefined}
 		onclick={handleClick}
 		bind:this={button}
 	>
@@ -87,6 +93,7 @@
 		class="button"
 		class:exploding={isExploding}
 		class:alternate={variant === 'alt'}
+		class:hero={variant === 'hero'}
 		onclick={handleClick}
 		bind:this={button}
 	>
@@ -110,6 +117,14 @@
 		position: relative;
 		&.alternate {
 			--button-color: #fff;
+		}
+		&.hero {
+			--button-color: #fff;
+		}
+		@media (min-width: 768px) {
+			&.hero {
+				--button-color: var(--orange);
+			}
 		}
 		&.exploding::after {
 			box-shadow:

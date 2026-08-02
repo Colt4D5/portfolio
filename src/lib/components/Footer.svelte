@@ -6,7 +6,7 @@
 		PUBLIC_LAST_NAME,
 		PUBLIC_PORTFOLIO_URL
 	} from '$env/static/public';
-	import { Mail, Globe } from '@lucide/svelte';
+	import { Mail, Globe, FileDown } from '@lucide/svelte';
 	import Linkedin from '$lib/assets/svg/linkedin.svelte';
 
 	const currentYear = new Date().getFullYear();
@@ -42,6 +42,9 @@
 			>
 				<Globe size={28} />
 			</a>
+			<a href="/resume.pdf" target="_blank" rel="noopener noreferrer external" aria-label="Resume">
+				<FileDown size={28} />
+			</a>
 		</div>
 	</div>
 </footer>
@@ -53,18 +56,27 @@
 			padding: 1rem 0;
 			width: min(100%, var(--max-width));
 			display: grid;
-			grid-template-columns: auto 1fr auto;
-			align-items: flex-end;
-			gap: 2rem;
+			grid-template-columns: 1fr;
+			justify-items: center;
+			text-align: center;
+			gap: 1rem;
+
 			.footer-name {
 				margin: 0;
 				padding: 0;
 				line-height: 1;
 				font-size: 1.25rem;
 			}
+
+			.footer-copy {
+				order: 1;
+				font-size: 0.875rem;
+			}
+
 			.footer-links {
 				display: flex;
 				gap: 1rem;
+
 				a {
 					display: flex;
 					align-items: center;
@@ -72,9 +84,23 @@
 					/* color: inherit; */
 					text-decoration: none;
 					transition: opacity 0.2s ease;
+
 					&:hover {
 						opacity: 0.7;
 					}
+				}
+			}
+
+			@media (min-width: 768px) {
+				grid-template-columns: auto 1fr auto;
+				align-items: flex-end;
+				justify-items: stretch;
+				text-align: left;
+				gap: 2rem;
+
+				.footer-copy {
+					order: 0;
+					font-size: 1rem;
 				}
 			}
 		}

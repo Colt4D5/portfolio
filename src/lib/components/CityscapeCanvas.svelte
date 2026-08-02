@@ -23,6 +23,7 @@
 	let animationStartTime: number | null = null;
 	let reducedMotion = $state(false);
 	let resizeTimeout: ReturnType<typeof setTimeout> | null = null;
+	let isVisible = $state(true);
 
 	function getOceanHeight(): number {
 		const wrapper = document.getElementById('canvas-wrapper');
@@ -60,7 +61,7 @@
 	}
 
 	function animate(timestamp: number) {
-		if (!canvas || !ctx) return;
+		if (!canvas || !ctx || document.hidden) return;
 
 		if (reducedMotion) {
 			drawOcean(timestamp, 1);
@@ -170,6 +171,18 @@
 		}, 150);
 	}
 
+	function handleVisibilityChange() {
+		isVisible = !document.hidden;
+		if (document.hidden) {
+			if (animationFrame !== undefined) {
+				cancelAnimationFrame(animationFrame);
+				animationFrame = undefined;
+			}
+		} else if (!reducedMotion && animationFrame === undefined) {
+			animationFrame = requestAnimationFrame(animate);
+		}
+	}
+
 	onMount(() => {
 		const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 		reducedMotion = mediaQuery.matches;
@@ -183,13 +196,14 @@
 					resizeCanvas();
 					drawOcean(performance.now(), 1);
 				}
-			} else if (!reducedMotion && animationFrame === undefined) {
+			} else if (!reducedMotion && isVisible && animationFrame === undefined) {
 				animationStartTime = null;
 				animationFrame = requestAnimationFrame(animate);
 			}
 		};
 
 		mediaQuery.addEventListener('change', onChange);
+		document.addEventListener('visibilitychange', handleVisibilityChange);
 
 		if (canvas) {
 			ctx = canvas.getContext('2d');
@@ -206,6 +220,7 @@
 
 				return () => {
 					mediaQuery.removeEventListener('change', onChange);
+					document.removeEventListener('visibilitychange', handleVisibilityChange);
 					window.removeEventListener('resize', debouncedResize);
 					if (resizeTimeout) clearTimeout(resizeTimeout);
 					if (animationFrame !== undefined) cancelAnimationFrame(animationFrame);

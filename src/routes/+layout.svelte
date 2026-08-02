@@ -3,7 +3,6 @@
 	import { dev } from '$app/environment';
 	import { injectAnalytics } from '@vercel/analytics/sveltekit';
 	import { PUBLIC_FIRST_NAME, PUBLIC_LAST_NAME } from '$env/static/public';
-	import favicon from '$lib/assets/favicon.svg';
 	import '$lib/assets/css/reset.css';
 	import '$lib/assets/css/fonts.css';
 	import '$lib/assets/css/app.css';
@@ -74,7 +73,6 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
 	<title>{PUBLIC_FIRST_NAME} {PUBLIC_LAST_NAME} | Full-Stack Software Engineer</title>
 </svelte:head>
 

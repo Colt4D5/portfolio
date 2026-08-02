@@ -20,8 +20,8 @@
 					<img
 						src="/images/about-image.webp"
 						alt="{PUBLIC_FIRST_NAME} {PUBLIC_LAST_NAME} | Full-Stack Software Engineer"
-						width="600"
-						height="600"
+						width="512"
+						height="365"
 						loading="lazy"
 						decoding="async"
 					/>
@@ -51,8 +51,8 @@
 				#image-container {
 					border: 1px solid hsl(from var(--primary) h s l / 0.2);
 					border-radius: 1rem;
-          aspect-ratio: 16/9;
-          overflow: hidden;
+					aspect-ratio: 16/9;
+					overflow: hidden;
 					img {
 						width: 100%;
 						max-height: 100%;

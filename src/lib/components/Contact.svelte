@@ -18,12 +18,12 @@
 		margin-block: 0;
 		padding-top: 0;
 		content-visibility: auto;
-    
+
 		.section-container {
-      background-image: url('/images/contact-bg.webp');
-      background-size: cover;
-      background-position: 80% 70%;
-      background-repeat: no-repeat;
+			background-image: url('/images/contact-bg.webp');
+			background-size: cover;
+			background-position: 80% 70%;
+			background-repeat: no-repeat;
 			padding: 4rem 2rem;
 			@media (min-width: 768px) {
 				padding: 6rem 2rem;

@@ -33,12 +33,20 @@
 			explode();
 		}
 
-		setTimeout(() => {
+		// Yield so the browser can paint the loading/exploding state before
+		// navigation blocks the main thread.
+		const navigate = () => {
 			if (href) {
 				window.location.href = href;
 			}
 			isExploding = false;
-		}, delay);
+		};
+
+		if ('scheduler' in window && 'yield' in scheduler) {
+			scheduler.yield().then(() => setTimeout(navigate, Math.min(delay, 300)));
+		} else {
+			setTimeout(navigate, Math.min(delay, 300));
+		}
 	}
 
 	function explode() {

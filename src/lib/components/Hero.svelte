@@ -28,14 +28,25 @@
 
 	#hero {
 		margin: 0;
-		background-image: url('/images/hero-bg.jpg');
+		position: relative;
+		background-image: linear-gradient(
+			to bottom,
+			hsl(274, 91%, 27%),
+			hsl(294, 66%, 32%),
+			hsl(331, 74%, 62%),
+			hsl(351, 89%, 67%),
+			hsl(14, 97%, 71%),
+			hsl(26, 89%, 69%),
+			hsl(32, 98%, 77%),
+			hsl(38, 100%, 84%),
+			hsl(45, 100%, 92%),
+			hsl(45, 100%, 92%)
+		);
 		background-size: 100% 100%;
 		background-position: center;
 		background-repeat: no-repeat;
 		min-height: 100dvh;
-		content-visibility: auto;
 
-		/* background-image: linear-gradient(to bottom, hsl(263, 100%, 53%), hsl(327, 74%, 62%) 50%, hsl(32, 100%, 64%), hsl(56, 100%, 76%), hsl(56, 60%, 86%), hsl(56, 60%, 86%) 100%); */
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
@@ -46,6 +57,28 @@
 		@media (min-width: 768px) {
 			padding-top: 15vh;
 		}
+		&::before {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-image: url('/images/mountains-01.webp'), url('/images/mountains-02.webp');
+			background-position:
+				-215% calc(100% - 2.15rem),
+				155% calc(100% - 2.25rem);
+			background-repeat: no-repeat;
+			background-size: 80%, 60%;
+			pointer-events: none;
+			z-index: 1;
+			@media (min-width: 768px) {
+				background-position:
+					0% calc(100% - 3.25rem),
+					100% calc(100% - 3.5rem);
+				background-size: 45%, 45%;
+			}
+		}
 		&::after {
 			content: '';
 			position: absolute;
@@ -54,6 +87,8 @@
 			width: 100%;
 			height: 6rem;
 			background: linear-gradient(to bottom, rgb(255 255 255 / 0), rgb(255 255 255 / 1));
+			pointer-events: none;
+			/* z-index: 2; */
 		}
 		h1 {
 			font-family: 'Pixelify Sans', sans-serif;
@@ -87,28 +122,6 @@
 				translate: 0 1rem;
 				animation: letter-in 0.3s ease-out forwards;
 				animation-delay: calc(1.7s + var(--letter-index) * 0.05s);
-			}
-		}
-		&::after {
-			content: '';
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-image: url('/images/mountains-01.png'), url('/images/mountains-02.png');
-			background-position:
-				-215% calc(100% - 2.15rem),
-				155% calc(100% - 2.25rem);
-			background-repeat: no-repeat;
-			background-size: 80%, 60%;
-			pointer-events: none;
-			z-index: 1;
-			@media (min-width: 768px) {
-				background-position:
-					0% calc(100% - 3.25rem),
-					100% calc(100% - 3.5rem);
-				background-size: 45%, 45%;
 			}
 		}
 		@media (max-width: 767px) and (orientation: portrait) {

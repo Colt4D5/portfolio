@@ -22,6 +22,7 @@
 	let rowNoise: number[] = [];
 	let animationStartTime: number | null = null;
 	let reducedMotion = $state(false);
+	let resizeTimeout: ReturnType<typeof setTimeout> | null = null;
 
 	function getOceanHeight(): number {
 		const wrapper = document.getElementById('canvas-wrapper');
@@ -159,6 +160,16 @@
 		generateRowNoise();
 	}
 
+	function debouncedResize() {
+		if (resizeTimeout) clearTimeout(resizeTimeout);
+		resizeTimeout = setTimeout(() => {
+			resizeCanvas();
+			if (reducedMotion && canvas && ctx) {
+				drawOcean(performance.now(), 1);
+			}
+		}, 150);
+	}
+
 	onMount(() => {
 		const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 		reducedMotion = mediaQuery.matches;
@@ -184,7 +195,7 @@
 			ctx = canvas.getContext('2d');
 			if (ctx) {
 				resizeCanvas();
-				window.addEventListener('resize', resizeCanvas);
+				window.addEventListener('resize', debouncedResize);
 
 				if (reducedMotion) {
 					drawOcean(performance.now(), 1);
@@ -195,7 +206,8 @@
 
 				return () => {
 					mediaQuery.removeEventListener('change', onChange);
-					window.removeEventListener('resize', resizeCanvas);
+					window.removeEventListener('resize', debouncedResize);
+					if (resizeTimeout) clearTimeout(resizeTimeout);
 					if (animationFrame !== undefined) cancelAnimationFrame(animationFrame);
 				};
 			}

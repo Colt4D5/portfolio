@@ -10,10 +10,12 @@
 	let cloudPair: HTMLImageElement;
 	let imagesLoaded = $state(0);
 	let reducedMotion = $state(false);
+	let resizeTimeout: ReturnType<typeof setTimeout> | null = null;
 
 	let lastSpawnTime = 0;
 	let nextSpawnInterval = getRandomSpawnInterval();
-	const maxClouds = 25;
+	const maxClouds = 15;
+	const maxParticles = 100;
 
 	function getRandomSpawnInterval() {
 		return Math.random() * 3000 + 2000; // 2-5 seconds
@@ -69,14 +71,18 @@
 
 		return () => {
 			mediaQuery.removeEventListener('change', onChange);
+			if (resizeTimeout) clearTimeout(resizeTimeout);
 		};
 	});
 
 	function onresize() {
-		if (canvas) {
-			canvas.width = document.documentElement.offsetWidth;
-			canvas.height = document.documentElement.offsetHeight;
-		}
+		if (resizeTimeout) clearTimeout(resizeTimeout);
+		resizeTimeout = setTimeout(() => {
+			if (canvas) {
+				canvas.width = document.documentElement.offsetWidth;
+				canvas.height = document.documentElement.offsetHeight;
+			}
+		}, 150);
 	}
 
 	function animate(timestamp = 0) {
@@ -139,6 +145,11 @@
 						particles.splice(i, 1);
 						i--;
 					}
+				}
+
+				// Hard cap particle count to protect runtime performance
+				if (particles.length > maxParticles) {
+					particles.splice(0, particles.length - maxParticles);
 				}
 			}
 		}

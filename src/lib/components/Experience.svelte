@@ -65,7 +65,9 @@
 
 <style>
 	#experience {
-		padding-block: 0;
+		padding-top: 2rem;
+    padding-bottom: 0;
+		content-visibility: auto;
 		.section-container {
 			@media (max-width: 767px) {
 				padding: 3rem 1rem;

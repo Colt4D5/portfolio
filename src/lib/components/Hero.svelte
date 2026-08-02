@@ -29,11 +29,13 @@
 	#hero {
 		margin: 0;
 		background-image: url('/images/hero-bg.jpg');
-		/* background-image: linear-gradient(to bottom, hsl(263, 100%, 53%), hsl(327, 74%, 62%) 50%, hsl(32, 100%, 64%), hsl(56, 100%, 76%), hsl(56, 60%, 86%), hsl(56, 60%, 86%) 100%); */
 		background-size: 100% 100%;
 		background-position: center;
 		background-repeat: no-repeat;
 		min-height: 100dvh;
+		content-visibility: auto;
+
+		/* background-image: linear-gradient(to bottom, hsl(263, 100%, 53%), hsl(327, 74%, 62%) 50%, hsl(32, 100%, 64%), hsl(56, 100%, 76%), hsl(56, 60%, 86%), hsl(56, 60%, 86%) 100%); */
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;

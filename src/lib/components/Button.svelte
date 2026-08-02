@@ -18,14 +18,18 @@
 		href ? href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') : false
 	);
 
+	function prefersReducedMotion(): boolean {
+		if (typeof window === 'undefined') return false;
+		return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	}
+
 	function handleClick(event: MouseEvent) {
 		if (isExploding) return;
 
 		event.preventDefault();
 		isExploding = true;
 
-		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-		if (!prefersReducedMotion) {
+		if (!prefersReducedMotion()) {
 			explode();
 		}
 
@@ -40,7 +44,8 @@
 	function explode() {
 		if (!button) return;
 		const btnBox = button.getBoundingClientRect();
-		for (let i = 0; i < 50; i++) {
+		const count = Math.min(50, prefersReducedMotion() ? 0 : 50);
+		for (let i = 0; i < count; i++) {
 			particles.push({
 				x: Math.random() * btnBox.width + btnBox.left + window.scrollX,
 				y: Math.random() * btnBox.height + btnBox.top + window.scrollY,

@@ -6,6 +6,7 @@
 		url('/fonts/montserratalternates-black-webfont.woff') format('woff');
 	font-weight: 900;
 	font-style: normal;
+	font-display: swap;
 }
 
 /* font-weight: 700; */
@@ -16,6 +17,7 @@
 		url('/fonts/montserratalternates-bold-webfont.woff') format('woff');
 	font-weight: 700;
 	font-style: normal;
+	font-display: swap;
 }
 
 /* font-weight: 700; */
@@ -26,6 +28,7 @@
 		url('/fonts/montserratalternates-bolditalic-webfont.woff') format('woff');
 	font-weight: 700;
 	font-style: italic;
+	font-display: swap;
 }
 
 /* font-weight: 200; */
@@ -36,6 +39,7 @@
 		url('/fonts/montserratalternates-extralight-webfont.woff') format('woff');
 	font-weight: 200;
 	font-style: normal;
+	font-display: swap;
 }
 
 /* font-weight: 200; */
@@ -46,6 +50,7 @@
 		url('/fonts/montserratalternates-extralightitalic-webfont.woff') format('woff');
 	font-weight: 200;
 	font-style: italic;
+	font-display: swap;
 }
 
 /* font-weight: 400; */
@@ -56,6 +61,7 @@
 		url('/fonts/montserratalternates-italic-webfont.woff') format('woff');
 	font-weight: 400;
 	font-style: italic;
+	font-display: swap;
 }
 
 /* font-weight: 400; */
@@ -66,6 +72,7 @@
 		url('/fonts/montserratalternates-regular-webfont.woff') format('woff');
 	font-weight: 400;
 	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {

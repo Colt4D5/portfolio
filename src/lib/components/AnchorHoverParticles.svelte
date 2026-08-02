@@ -20,7 +20,7 @@
 		if (!target) return;
 
 		const anchor = target.closest('a');
-		if (anchor instanceof HTMLElement) {
+		if (anchor instanceof HTMLElement && !anchor.classList.contains('button')) {
 			hoveredAnchor = anchor;
 			startLoop();
 		}

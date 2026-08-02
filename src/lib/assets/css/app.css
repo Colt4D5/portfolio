@@ -55,7 +55,7 @@ a {
 		color 0.3s ease,
 		text-shadow 0.3s ease;
 	text-shadow: 0 0 0rem hsl(from var(--accent) h s l / 1);
-	&:hover {
+	&:not(.button):hover {
 		color: hsl(from var(--accent) h s l / 1);
 		text-shadow: 0 0 0.5rem hsl(from var(--accent) h s calc(l) / 1);
 	}

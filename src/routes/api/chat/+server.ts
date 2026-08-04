@@ -95,7 +95,7 @@ async function callOpenAI(messages: OpenAIMessage[]): Promise<string> {
 			model: 'gpt-5.6-luna',
 			messages,
 			temperature: 0.8,
-			max_tokens: 500
+			max_completion_tokens: 500
 		})
 	});
 

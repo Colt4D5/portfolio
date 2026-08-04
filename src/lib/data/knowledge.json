@@ -1,0 +1,90 @@
+{
+	"documents": [
+		{
+			"id": "about",
+			"title": "About Colton Allen",
+			"content": "Colton Allen is a full-stack software engineer who genuinely loves the full stack — from making buttons look irresistible to chasing bugs through backend code like a detective with too much caffeine. He gets weirdly excited about solving puzzles, learning new tech, and automating the boring stuff so humans don't have to suffer. Fair warning: mention a cool idea near him and he'll probably have a prototype before you finish your sentence. He's currently an Application Developer at Maritz, where he writes code, leads teams, and occasionally whispers 'middle out' under his breath. He's fun, quirky, runs on espresso, and believes there's a meme for every situation.",
+			"metadata": { "category": "about" }
+		},
+		{
+			"id": "experience-maritz",
+			"title": "Application Developer at Maritz",
+			"content": "July 2024 to Current — Colton is an Application Developer at Maritz in Missouri, building enterprise web apps with Angular, TypeScript, JavaScript, HTML, and CSS. He makes complex business workflows feel less like a root canal and more like a smooth user experience. He led a 4-engineer squad, set up engineering standards, Agile rituals, and reusable architecture so the team could ship faster without losing their minds. He also went full AI evangelist: he architected a custom MCP server in C# so the team could debug across apps, APIs, and SQL databases without crying. Then he built an AI-powered CLI with Node.js, TypeScript, and OpenAI APIs that automated event provisioning — basically teaching a robot to do the tedious stuff. He even wrote AI governance standards and mentored cross-functional teams on responsible AI adoption, because with great power comes great need for rules. Finally, he teamed up with leadership to crush migration bottlenecks with AI workflows, cutting down manual documentation drudgery. Not bad for a guy whose spirit animal is probably Jared Dunn.",
+			"metadata": { "category": "experience", "company": "Maritz", "location": "MO" }
+		},
+		{
+			"id": "experience-cds",
+			"title": "Full-Stack Web Developer at Convention Data Services",
+			"content": "May 2023 to July 2024 — Colton was a Full-Stack Web Developer at Convention Data Services in Massachusetts, engineering registration platforms that handled events with 100K+ attendees. That's a lot of people, and somehow the code didn't catch fire. He built REST APIs and backend services in ASP and PHP, following object-oriented design principles like a responsible adult. It was solid, scalable work — the kind of thing that makes you nod respectfully before making a 'Poop fare?' joke.",
+			"metadata": {
+				"category": "experience",
+				"company": "Convention Data Services",
+				"location": "MA"
+			}
+		},
+		{
+			"id": "experience-img",
+			"title": "Full-Stack Web Developer at Imaginal Marketing Group",
+			"content": "June 2021 to May 2023 — Colton was a Full-Stack Web Developer at Imaginal Marketing Group in Louisiana, where he built accessible, SEO-friendly web apps with PHP, Twig, and JavaScript. He improved Core Web Vitals and search performance so much that Google probably smiled a little. He wrote a Python automation tool that monitored website health and cut support tickets in half — 50% fewer 'the website is broken' emails, which is basically world peace for developers. He also architected a mobile-first SvelteKit app with personalized recommendations that actually boosted product sales. Plus he designed REST APIs connecting frontends to backends and SQL databases, because someone has to keep the data flowing.",
+			"metadata": {
+				"category": "experience",
+				"company": "Imaginal Marketing Group",
+				"location": "LA"
+			}
+		},
+		{
+			"id": "tech-stack",
+			"title": "Tech Stack and Skills",
+			"content": "Colton's tech stack is basically a buffet of modern web development. He's strongest with React, Svelte, SvelteKit, Node.js, TypeScript, JavaScript, Angular, PHP, ASP, Python, SQL Server, HTML, and CSS. He also dabbles in C#, OpenAI APIs, and AI tooling — enough to build an MCP server and an AI CLI without accidentally starting Skynet. His skill set includes REST API design, database integration, accessibility, SEO optimization, Agile team leadership, and explaining to stakeholders why 'just one small change' is never just one small change.",
+			"metadata": { "category": "skills" }
+		},
+		{
+			"id": "contact",
+			"title": "Contact and Availability",
+			"content": "Colton is open to new opportunities, interesting projects, and conversations that don't start with 'quick question.' You can email him at coltonaallen@gmail.com, connect on LinkedIn at linkedin.com/in/colton-a-allen, or grab his resume from the portfolio site. He's available for full-time roles, freelance gigs, or just a good tech rant over coffee.",
+			"metadata": { "category": "contact" }
+		},
+		{
+			"id": "side-projects",
+			"title": "Side Projects",
+			"content": "Colton loves tinkering on side projects and prototypes — usually after his third espresso of the day. He hasn't listed his public side projects here yet, but ask him directly and he'll probably demo something he built last weekend while you were watching Netflix.",
+			"metadata": { "category": "projects" }
+		},
+		{
+			"id": "education",
+			"title": "Education",
+			"content": "Colton's formal education details are still loading... like a SPA on a 3G connection. Ask him directly and he'll happily share the academic backstory.",
+			"metadata": { "category": "education" }
+		},
+		{
+			"id": "hobbies-coffee",
+			"title": "Coffee and Espresso",
+			"content": "Colton is obsessed with coffee. Not just drinking it — pulling the perfect espresso shot is basically a daily ritual. He's almost always seen with a cup of coffee in hand, and if you catch him without one, something has gone terribly wrong. His bloodstream is probably 40% caffeine at this point, and honestly, it powers some of his best code.",
+			"metadata": { "category": "hobbies" }
+		},
+		{
+			"id": "hobbies-tv",
+			"title": "Favorite TV Shows",
+			"content": "Colton watches TV like it's research. His absolute favorite show is Silicon Valley on HBO — he thinks it's hilarious, quotable, and weirdly accurate about tech culture. His favorite character is Donald 'Jared' 'OJ' Dunn, but he also has big respect for Gilfoyle, Gavin Belson, Dinesh, Erlich Bachman, and Jian Yang. He also enjoys Better Call Saul and King of the Hill, but let's be honest: Silicon Valley is the main character.",
+			"metadata": { "category": "hobbies" }
+		},
+		{
+			"id": "hobbies-silicon-valley-quotes",
+			"title": "Silicon Valley Quotes",
+			"content": "Colton quotes Silicon Valley every single day, often in situations where it barely makes sense. Some favorites include: 'The bear is sticky with honey,' 'Which one? Which one? Which one?,' 'You reckless child!,' 'Poop fare?,' 'Every day it feels like I've died and gone to hell,' 'middle out,' 'Oh right, cause Chinese,' and 'Oh yeah, cause Nelson.' He believes the show is so quotable it should come with a warning label.",
+			"metadata": { "category": "hobbies" }
+		},
+		{
+			"id": "hobbies-music",
+			"title": "Music and Guitar",
+			"content": "Colton plays guitar and listens to pretty much everything. On the heavy side, he's into modern metal like Greyhaven, Norma Jean, Sleep Token, and Spiritbox. But he also vibes with 70s classics like Pink Floyd, Foreigner, James Taylor, Jackson Browne, and The Eagles. Basically, if it has a guitar in it, he's probably into it — unless it's elevator music. No one needs that.",
+			"metadata": { "category": "hobbies" }
+		},
+		{
+			"id": "hobbies-memes",
+			"title": "Memes",
+			"content": "Colton is deeply committed to meme culture. He says all the time that there's a meme for every situation, and honestly, he's not wrong. If you describe a problem, he probably has a reaction image ready before you finish talking.",
+			"metadata": { "category": "hobbies" }
+		}
+	]
+}

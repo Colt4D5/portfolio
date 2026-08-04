@@ -11,6 +11,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import ForegroundCanvas from '$lib/components/ForegroundCanvas.svelte';
 	import AnchorHoverParticles from '$lib/components/AnchorHoverParticles.svelte';
+	import ChatbotPopup from '$lib/components/ChatbotPopup.svelte';
 	import { getPortfolioUrl } from '$lib/utils/utils';
 	import { onMount } from 'svelte';
 
@@ -36,6 +37,7 @@
 	const portfolioUrl = getPortfolioUrl(PUBLIC_PORTFOLIO_URL);
 	const canonicalUrl = $derived(new URL($page.url.pathname, portfolioUrl).href);
 	const ogImageUrl = $derived(new URL('/images/about-image.webp', portfolioUrl).href);
+	const isHomePage = $derived($page.url.pathname === '/');
 
 	onMount(() => {
 		const sections = Array.from(document.querySelectorAll('section:has(.section-container)'));
@@ -115,9 +117,11 @@
 
 <Footer />
 
-<ForegroundCanvas />
+<ForegroundCanvas enableClouds={isHomePage} />
 
 <AnchorHoverParticles />
+
+<ChatbotPopup />
 
 <svelte:window {onscroll} />
 

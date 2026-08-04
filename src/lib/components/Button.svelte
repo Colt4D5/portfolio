@@ -8,9 +8,17 @@
 		delay?: number;
 		variant?: 'default' | 'alt' | 'hero';
 		download?: string | boolean;
+		onclick?: (event: MouseEvent) => void;
 	}
 
-	const { children, href, delay = 1000, variant = 'default', download = false }: Props = $props();
+	const {
+		children,
+		href,
+		delay = 1000,
+		variant = 'default',
+		download = false,
+		onclick
+	}: Props = $props();
 
 	let button = $state<HTMLButtonElement | HTMLAnchorElement>();
 	let isExploding = $state(false);
@@ -35,21 +43,24 @@
 		}
 
 		// Yield so the browser can paint the loading/exploding state before
-		// navigation blocks the main thread.
-		const navigate = () => {
-			if (!href) return;
-			if (download) {
-				window.open(href, '_blank');
-			} else {
-				window.location.href = href;
+		// the action blocks the main thread.
+		const action = () => {
+			if (onclick) {
+				onclick(event);
+			} else if (href) {
+				if (download) {
+					window.open(href, '_blank');
+				} else {
+					window.location.href = href;
+				}
 			}
 			isExploding = false;
 		};
 
 		if ('scheduler' in window && 'yield' in scheduler) {
-			scheduler.yield().then(() => setTimeout(navigate, Math.min(delay, 300)));
+			scheduler.yield().then(() => setTimeout(action, Math.min(delay, 300)));
 		} else {
-			setTimeout(navigate, Math.min(delay, 300));
+			setTimeout(action, Math.min(delay, 300));
 		}
 	}
 

@@ -1,9 +1,14 @@
 <script>
 	import { PUBLIC_FIRST_NAME, PUBLIC_LAST_NAME } from '$env/static/public';
+	import { chatbotState } from '$lib/stores/chatbot.svelte';
 	import Button from './Button.svelte';
 	import CityscapeCanvas from './CityscapeCanvas.svelte';
 
 	const subtitle = 'full stack software engineer';
+
+	function openChatbot() {
+		chatbotState.isOpen = true;
+	}
 </script>
 
 <section id="hero">
@@ -15,8 +20,8 @@
 	</div>
 	<span class="visually-hidden">{subtitle}</span>
 	<div class="button-wrapper">
-		<Button href="#about" delay={500} variant="hero">Learn about me</Button>
 		<Button href="/resume.pdf" delay={500} variant="hero" download>download resume</Button>
+		<Button delay={500} variant="hero" onclick={openChatbot}>ask my AI assistant</Button>
 	</div>
 	<CityscapeCanvas />
 </section>

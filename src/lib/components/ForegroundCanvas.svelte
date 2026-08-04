@@ -3,6 +3,12 @@
 	import { particles } from '$lib/stores/particles.svelte';
 	import { clouds } from '$lib/stores/clouds.svelte';
 
+	interface Props {
+		enableClouds?: boolean;
+	}
+
+	let { enableClouds = true }: Props = $props();
+
 	let canvas: HTMLCanvasElement;
 	let ctx: CanvasRenderingContext2D | null;
 
@@ -23,7 +29,7 @@
 	}
 
 	function spawnCloud() {
-		if (!canvas || imagesLoaded < 2) return;
+		if (!enableClouds || !canvas || imagesLoaded < 2) return;
 
 		const image = Math.random() < 0.5 ? cloud : cloudPair;
 		const scale = Math.random() * 0.5 + 0.5; // 0.5x to 1x
@@ -102,6 +108,12 @@
 				}
 			}
 		}
+
+		$effect(() => {
+			if (!enableClouds) {
+				clouds.length = 0;
+			}
+		});
 
 		return () => {
 			mediaQuery.removeEventListener('change', onChange);

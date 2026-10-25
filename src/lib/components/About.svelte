@@ -15,7 +15,7 @@
 					Fair warning: if you mention a cool idea, there's a decent chance I'll build a prototype
 					before the conversation is over.
 				</p>
-				<Button href="/resume.pdf" variant="alt" download>download resume</Button>
+				<Button href="/Colton Allen resume.pdf" variant="alt" download>download resume</Button>
 			</div>
 			<div id="about-right">
 				<div id="image-container">

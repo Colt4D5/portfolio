@@ -34,8 +34,8 @@
 
 	function downloadResume() {
 		const link = document.createElement('a');
-		link.href = '/resume.pdf';
-		link.download = `${PUBLIC_FIRST_NAME}_Resume.pdf`;
+		link.href = '/Colton Allen resume.pdf';
+		link.download = `${PUBLIC_FIRST_NAME}_Colton Allen resume.pdf`;
 		document.body.appendChild(link);
 		link.click();
 		document.body.removeChild(link);

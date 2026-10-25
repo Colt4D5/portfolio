@@ -42,7 +42,7 @@
 			>
 				<Globe size={28} />
 			</a>
-			<a href="/resume.pdf" target="_blank" rel="noopener noreferrer external" aria-label="Resume">
+			<a href="/Colton Allen resume.pdf" target="_blank" rel="noopener noreferrer external" aria-label="Resume">
 				<FileDown size={28} />
 			</a>
 		</div>

@@ -10,7 +10,7 @@
 			<p>I'm always open to new opportunities and interesting projects.</p>
 			<div class="button-group">
 				<Button href="mailto:{PUBLIC_EMAIL}" variant="alt">get in touch</Button>
-				<Button href="/resume.pdf" variant="alt" download>download resume</Button>
+				<Button href="/Colton Allen resume.pdf" variant="alt" download>download resume</Button>
 			</div>
 		</div>
 	</div>

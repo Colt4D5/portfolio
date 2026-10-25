@@ -20,7 +20,7 @@
 	</div>
 	<span class="visually-hidden">{subtitle}</span>
 	<div class="button-wrapper">
-		<Button href="/resume.pdf" delay={500} variant="hero" download>download resume</Button>
+		<Button href="/Colton Allen resume.pdf" delay={500} variant="hero" download>download resume</Button>
 		<Button delay={500} variant="hero" onclick={openChatbot}>ask my AI assistant</Button>
 	</div>
 	<CityscapeCanvas />

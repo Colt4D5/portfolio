@@ -19,7 +19,7 @@ export type Experience = {
 export const experienceData: Experience[] = [
 	{
 		company: 'Maritz',
-		title: 'Full Stack Application Developer',
+		title: 'Application Developer',
 		link: 'https://maritz.com/',
 		tenure: {
 			startDate: {
@@ -28,23 +28,23 @@ export const experienceData: Experience[] = [
 			},
 			endDate: {
 				month: 'Present',
-				year: `${new Date().getFullYear()}`
+				year: ``
 			}
 		},
 		description:
-			'Engineered scalable enterprise web applications using Angular, TypeScript, JavaScript, HTML, and CSS, simplifying complex business workflows and improving user experience.',
+			'Built enterprise applications and AI-powered tools, led engineering initiatives, and streamlined workflows through full-stack development, troubleshooting, and responsible AI adoption.',
 		responsibilities: [
-			'Led a 4-engineer team, establishing engineering standards, Agile workflows, and reusable architectural patterns that improved delivery consistency and velocity.',
-			'Championed AI adoption by architecting a custom MCP server in C#, enabling AI-assisted end-to-end debugging across application, API, and SQL database layers for the engineering team.',
-			'Developed an AI-powered CLI using Node.js, TypeScript, and OpenAI APIs that automated event provisioning and streamlined developer workflows.',
-			'Defined AI governance standards and mentored cross-functional teams on responsible AI adoption and developer best practices.',
-			'Partnered with leadership to identify migration bottlenecks, implementing AI-enabled workflows and automation that reduced time spent migrating documentation by hand.'
+			'Built an MCP server in C# with multi-agent orchestration (tool calls, skills, and a custom agent) to enable AI-assisted debugging across application, API, and SQL Server layers, accelerating full-stack troubleshooting.',
+			'Developed enterprise web applications using C#, .NET MVC, Angular, TypeScript, HTML, CSS, and SQL Server, modernizing business workflows and improving user experience.',
+			'Created 8+ hours of AI training content and supporting documentation to educate engineers on responsible AI adoption, effective tool usage, and integrating AI workflows into their day-to-day development tasks.',
+			'Developed an AI-powered event provisioning CLI using Node.js, TypeScript, and OpenAI APIs to automate repetitive setup workflows to reduce manual developer effort.',
+			'Led a team of 4 engineers, establishing engineering standards, Agile workflows, and reusable architecture patterns to improve code consistency, development efficiency, and delivery speed.'
 		]
 	},
 	{
-		company: 'Convention Data Services',
+		company: 'Maritz',
 		title: 'Full Stack Web Developer',
-		link: 'https://maritz.com/resources/press-release-070824/',
+		link: 'https://maritz.com/',
 		tenure: {
 			startDate: {
 				month: 'May',
@@ -56,10 +56,11 @@ export const experienceData: Experience[] = [
 			}
 		},
 		description:
-			'Engineered enterprise registration platforms using ASP, PHP, TypeScript, JavaScript, and SQL Server supporting events with 100K+ attendees.',
+			'Built and maintained enterprise event registration platforms for events with 100K+ attendees, developing backend services, REST APIs, and housing API integrations using Classic ASP, PHP, TypeScript, JavaScript, and SQL Server.',
 		responsibilities: [
-			'Implemented front-end features using TypeScript, JavaScript, HTML, and CSS, enhancing user experience and accessibility.',
-			'Developed REST APIs and backend services in ASP and PHP following object-oriented design principles (OOP).'
+			'Built and maintained enterprise event registration platforms using Classic ASP, PHP, TypeScript, JavaScript, jQuery, and SQL Server, supporting events with 100K+ attendees.',
+			'Developed backend services and REST APIs to integrate application workflows with database systems.',
+			'Contributed to updates to the internal housing API and advised on implementation strategies for consistent adoption across events.'
 		]
 	},
 	{
@@ -76,12 +77,11 @@ export const experienceData: Experience[] = [
 				year: '2023'
 			}
 		},
-		description: 'Worked on developing web applications using modern frameworks and technologies.',
+		description: 'Developed accessible, SEO-focused client websites, built a Python monitoring tool that reduced support tickets by 50%, and architected a mobile-first SvelteKit app to recommend products and drive sales.',
 		responsibilities: [
-			'Developed accessible, SEO-optimized web applications using PHP, Twig, and JavaScript, improving Core Web Vitals and search performance.',
-			'Built a Python automation tool that monitored website health, reducing support tickets by 50%.',
-			'Architected a mobile-first SvelteKit application with personalized recommendations that increased product sales.',
-			'Designed REST APIs integrating frontend applications with backend services and SQL databases.'
+			'Developed accessible, SEO-focused web applications using PHP, Twig, and JavaScript, improving Core Web Vitals, SEO visibility, and UX/UI across client websites.',
+			'Built a Python-based website monitoring tool that proactively detected site issues and reduced support tickets by 50%.',
+			'Architected a mobile-first SvelteKit progressive web app, styled with Tailwind, that scraped provider websites to recommend relevant products to clients immediately after receiving services, driving additional product sales.'
 		]
 	}
 ];
